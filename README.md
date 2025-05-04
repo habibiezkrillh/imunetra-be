@@ -20,4 +20,10 @@ Ini adalah backend service dari aplikasi **Imunetra**, sebuah platform deteksi d
 - Laravel 11 (PHP Framework)
 - MySQL (Relational Database)
 
-## to be continue....
+---
+
+## 👥 Tim Pengembang
+
+- Aurelia Davine Putri Nata
+- Leonard Widjaja
+- Muhammad Habbibie Zikrillah
