@@ -1,10 +1,9 @@
 # Imunetra - Backend
 
 ![Laravel](https://img.shields.io/badge/Laravel-F72C1F?style=flat&logo=laravel&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![REST API](https://img.shields.io/badge/API-RESTful-0052CC?style=flat&logo=api&logoColor=white)
 
-Ini adalah backend service dari aplikasi **Imunetra**, sebuah platform deteksi dini pneumonia pada anak-anak di wilayah terpencil. Backend ini dibangun dengan menggunakan **Laravel 11** dan **MySQL** untuk menyediakan RESTful API yang mendukung fitur autentikasi, manajemen data anak, laporan gejala, dan integrasi peran relawan serta tenaga kesehatan.
+Ini adalah backend service dari aplikasi **Imunetra**, sebuah platform deteksi dini pneumonia pada anak-anak di wilayah terpencil. Backend ini dibangun dengan menggunakan **Laravel** untuk menyediakan RESTful API yang mendukung fitur autentikasi, manajemen data anak, laporan gejala, dan integrasi peran relawan serta tenaga kesehatan.
 
 ---
 
@@ -20,20 +19,8 @@ Ini adalah backend service dari aplikasi **Imunetra**, sebuah platform deteksi d
 ## Requirements
 
 - Laravel 11 (PHP Framework)
-- MySQL (Relational Database)
 
 ---
-
-## .env configuration
-
-```bash
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=backend_imu
-DB_USERNAME=root
-DB_PASSWORD=
-```
 
 ## 👥 Tim Pengembang
 
