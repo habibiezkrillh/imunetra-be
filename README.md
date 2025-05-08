@@ -9,12 +9,9 @@ Ini adalah backend service dari aplikasi **Imunetra**, sebuah platform deteksi d
 
 ## 🚀 Fitur Backend
 
-- Autentikasi pengguna (Relawan & Tenaga Kesehatan) & (Forgot Password + OTP via Email)
-- Event Relawan (List event yang tersedia)
-- Chat System (Real-Time)
-- Riwayat Kegiatan (Sedang Berlangsung/Akan Datang/Selesai)
-- Input Data Pasien
-- Profil Pengguna (Edit profil & data berdasarkan role)
+- Otentikasi pengguna dengan token. 
+- Pengiriman data hasil pemeriksaan anak secara terstruktur. 
+- Pengambilan data diagnosis dari server secara berkala. 
 
 ## Requirements
 
