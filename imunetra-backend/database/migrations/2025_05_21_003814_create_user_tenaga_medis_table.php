@@ -4,24 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUserTenagaMedisTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('user_tenaga_medis', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('User Tenaga Medis', function (Blueprint $table) {
+            $table->id('id_tenagamedis');
+            $table->string('namatenagamedis');
+            $table->string('kotadomisili');
+            $table->string('nomortelepon');
+            $table->string('katasandi');
+            $table->date('tanggallahir');
+            $table->text('alamatlengkap');
+            $table->string('KTP');
+            $table->string('Puskesmas/RumahSakit');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('user_tenaga_medis');
+        Schema::dropIfExists('User Tenaga Medis');
     }
-};
+}
