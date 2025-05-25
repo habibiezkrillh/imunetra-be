@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PesanChat extends Model
 {
-    protected $table = 'Pesan Chat';
+    protected $table = 'pesan_chat';
     protected $primaryKey = 'id_pesan';
     public $timestamps = false;
 
@@ -18,4 +18,9 @@ class PesanChat extends Model
         'waktubaca',
         'isipesan',
     ];
+
+    public function chat()
+    {
+        return $this->belongsTo(Chat::class, 'id_chat');
+    }
 }

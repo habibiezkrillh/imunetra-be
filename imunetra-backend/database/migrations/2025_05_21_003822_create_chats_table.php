@@ -13,9 +13,6 @@ class CreateChatsTable extends Migration
             $table->unsignedBigInteger('id_relawan');
             $table->unsignedBigInteger('id_tenagamedis');
             $table->timestamps();
-
-            $table->foreign('id_relawan')->references('id')->on('user_relawans');
-            $table->foreign('id_tenagamedis')->references('id')->on('user_tenaga_medis');
         });
     }
 

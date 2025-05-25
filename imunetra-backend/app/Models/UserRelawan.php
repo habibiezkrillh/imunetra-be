@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRelawan extends Model
 {
-    protected $table = 'User Relawan';
+    protected $table = 'user_relawan';
     protected $primaryKey = 'id_relawan';
     public $timestamps = false;
 
@@ -19,4 +19,14 @@ class UserRelawan extends Model
         'alamatlengkap',
         'KTP',
     ];
+
+    public function riwayat()
+    {
+        return $this->hasMany(RiwayatRelawan::class, 'id_relawan');
+    }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'id_relawan');
+    }
 }

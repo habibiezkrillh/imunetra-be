@@ -8,7 +8,7 @@ class CreateUserTenagaMedisTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('User Tenaga Medis', function (Blueprint $table) {
+        Schema::create('user_tenaga_medis', function (Blueprint $table) {
             $table->id('id_tenagamedis');
             $table->string('namatenagamedis');
             $table->string('kotadomisili');

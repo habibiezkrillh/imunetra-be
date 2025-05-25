@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RiwayatTenagaMedis extends Model
 {
-    protected $table = 'Riwayat Tenaga Medis';
+    protected $table = 'riwayat_tenaga_medis';
     public $timestamps = false;
     public $incrementing = false;
 

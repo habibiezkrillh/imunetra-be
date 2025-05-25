@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RiwayatRelawan extends Model
 {
-    protected $table = 'Riwayat Relawan';
+    protected $table = 'riwayat_relawan';
     public $timestamps = false;
     public $incrementing = false;
 
@@ -16,4 +16,14 @@ class RiwayatRelawan extends Model
         'waktubergabung',
         'Status',
     ];
+
+    public function relawan()
+    {
+        return $this->belongsTo(UserRelawan::class, 'id_relawan');
+    }
+
+    public function event()
+    {   
+        return $this->belongsTo(Event::class, 'id_event');
+    }
 }

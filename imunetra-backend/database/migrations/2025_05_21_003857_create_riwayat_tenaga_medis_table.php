@@ -11,8 +11,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_tenagamedis');
             $table->string('aktivitas');
             $table->date('tanggal');
-
-            $table->foreign('id_tenagamedis')->references('id_tenagamedis')->on('user_tenaga_medis')->onDelete('cascade');
         });
     }
 
