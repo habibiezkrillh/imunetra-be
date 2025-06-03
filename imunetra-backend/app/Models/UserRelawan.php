@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRelawan extends Model
 {
-    protected $table = 'User Relawan';
+    protected $table = 'user_relawan'; // Gunakan nama tabel lowercase dan underscore sesuai migration
     protected $primaryKey = 'id_relawan';
     public $timestamps = false;
 
@@ -14,8 +14,8 @@ class UserRelawan extends Model
         'namarelawan',
         'kotadomisili',
         'nomortelepon',
+        'email',
         'katasandi',
-        'tanggallahir',
         'alamatlengkap',
         'KTP',
     ];

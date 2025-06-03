@@ -9,8 +9,9 @@ return new class extends Migration {
         Schema::create('user_relawan', function (Blueprint $table) {
             $table->id('id_relawan');
             $table->string('namarelawan');
-            $table->string('email');
+            $table->string('kotadomisili');
             $table->string('nomortelepon');
+            $table->string('email');
             $table->string('katasandi');
             $table->string('alamatlengkap');
             $table->string('KTP');
