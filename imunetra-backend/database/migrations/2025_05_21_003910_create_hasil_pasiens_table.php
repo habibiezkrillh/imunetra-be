@@ -4,19 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-    public function up(): void {
-        Schema::create('hasil_pasiens', function (Blueprint $table) {
-            $table->id('id_hasil');
+class CreateHasilPasienTable extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('hasil_pasien', function (Blueprint $table) {
+            $table->id('id_hasilpasien');
             $table->unsignedBigInteger('id_pasien');
-            $table->string('hasil');
-            $table->date('tanggal');
+            $table->float('suhupasiencelcius');
+            $table->integer('denyutjantung');
+            $table->boolean('statusispneumonia');
 
-            $table->foreign('id_pasien')->references('id_pasien')->on('data_pasiens')->onDelete('cascade');
+            $table->foreign('id_pasien')->references('id_pasien')->on('pasien')->onDelete('cascade');
         });
     }
 
-    public function down(): void {
-        Schema::dropIfExists('hasil_pasiens');
+    public function down(): void
+    {
+        Schema::dropIfExists('hasil_pasien');
     }
-};
+}

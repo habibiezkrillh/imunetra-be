@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('nik');
             $table->string('alamatlengkap');
             $table->date('tanggallahir');
-            $table->string('jeniskelamin');
+            $table->enum('jeniskelamin', ['pria', 'wanita']);
             $table->string('kategori');
         });
     }

@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataPasien extends Model
 {
-    protected $table = 'Data Pasien';
+    protected $table = 'data_pasiens'; 
     protected $primaryKey = 'id_pasien';
     public $timestamps = false;
 
     protected $fillable = [
-        'id_event',
         'namapasien',
-        'jeniskelaminispria',
+        'nik',
+        'alamatlengkap',
         'tanggallahir',
-        'alamat',
+        'jeniskelamin',
+        'kategori',
     ];
 }

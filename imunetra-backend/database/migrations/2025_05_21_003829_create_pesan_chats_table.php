@@ -16,9 +16,8 @@ class CreatePesanChatsTable extends Migration
             $table->boolean('dibaca');
             $table->dateTime('waktubaca')->nullable();
             $table->string('isipesan', 300);
-            $table->timestamps();
 
-            $table->foreign('id_chat')->references('id_chat')->on('chats');
+            $table->foreign('id_chat')->references('id_chat')->on('chats')->onDelete('cascade');
         });
     }
 
