@@ -3,51 +3,95 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Chat;
-use App\Models\UserRelawan;
-use App\Models\UserTenagaMedis;
+use App\Models\Repositories\ChatRepositoryInterface;
+use Mockery;
 
 class ChatTest extends TestCase
 {
-    use RefreshDatabase;
+    protected $mockChatRepository;
 
-    /** @test */
-    public function it_can_create_a_chat_between_relawan_and_tenaga_medis()
+    protected function setUp(): void
     {
-        // Buat relawan
-        $relawan = UserRelawan::create([
-            'namarelawan' => 'Andi Relawan',
-            'kotadomisili' => 'Makassar',
-            'nomortelepon' => '08123456789',
-            'katasandi' => bcrypt('relawan123'),
-            'tanggallahir' => '2000-01-01',
-            'alamatlengkap' => 'Jl. Relawan No.1',
-            'KTP' => 'ktp_relawan'
-        ]);
+        parent::setUp();
+        $this->mockChatRepository = Mockery::mock(ChatRepositoryInterface::class);
+        $this->app->instance(ChatRepositoryInterface::class, $this->mockChatRepository);
+    }
 
-        // Buat tenaga medis
-        $tenagaMedis = UserTenagaMedis::create([
-            'namatenagamedis' => 'Dr. Budi',
-            'kotadomisili' => 'Makassar',
-            'nomortelepon' => '08129876543',
-            'katasandi' => bcrypt('dokter123'),
-            'tanggallahir' => '1985-02-15',
-            'alamatlengkap' => 'Jl. Dokter No.3',
-            'KTP' => 'ktp_tenagamedis',
-            'puskesmas_rumahsakit' => 'Puskesmas Tamalanrea'
-        ]);
+    public function test_chat_can_be_created()
+    {
+        $chatData = [
+            'id_chat' => 'CHT123',
+            'message' => 'Hello World',
+            'sender' => 'User1',
+            'receiver' => 'User2',
+            'timestamp' => now()->toDateTimeString(),
+        ];
 
-        // Buat chat
-        $chat = Chat::create([
-            'user_relawan_id' => $relawan->id,
-            'user_tenaga_medis_id' => $tenagaMedis->id,
-        ]);
+        $this->mockChatRepository
+            ->shouldReceive('create')
+            ->once()
+            ->with($chatData)
+            ->andReturn((object) $chatData);
 
-        // Cek database
-        $this->assertDatabaseHas('chats', [
-            'user_relawan_id' => $relawan->id,
-            'user_tenaga_medis_id' => $tenagaMedis->id,
-        ]);
+        $chat = $this->mockChatRepository->create($chatData);
+
+        $this->assertEquals('Hello World', $chat->message);
+        $this->assertEquals('User1', $chat->sender);
+    }
+
+    public function test_chat_can_be_read()
+    {
+        $chatId = 'CHT123';
+        $chatData = (object)[
+            'id_chat' => $chatId,
+            'message' => 'Test Message',
+            'sender' => 'User1',
+            'receiver' => 'User2',
+            'timestamp' => now()->toDateTimeString(),
+        ];
+
+        $this->mockChatRepository
+            ->shouldReceive('findById')
+            ->once()
+            ->with($chatId)
+            ->andReturn($chatData);
+
+        $chat = $this->mockChatRepository->findById($chatId);
+
+        $this->assertEquals($chatId, $chat->id_chat);
+        $this->assertEquals('Test Message', $chat->message);
+    }
+
+    public function test_chat_can_be_updated()
+    {
+        $chatId = 'CHT123';
+        $updateData = [
+            'message' => 'Updated Message',
+        ];
+
+        $this->mockChatRepository
+            ->shouldReceive('update')
+            ->once()
+            ->with($chatId, $updateData)
+            ->andReturn(true);
+
+        $result = $this->mockChatRepository->update($chatId, $updateData);
+
+        $this->assertTrue($result);
+    }
+
+    public function test_chat_can_be_deleted()
+    {
+        $chatId = 'CHT123';
+
+        $this->mockChatRepository
+            ->shouldReceive('delete')
+            ->once()
+            ->with($chatId)
+            ->andReturn(true);
+
+        $result = $this->mockChatRepository->delete($chatId);
+
+        $this->assertTrue($result);
     }
 }

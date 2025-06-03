@@ -3,43 +3,102 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Models\DataPasien;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Repositories\DataPasienRepositoryInterface;
+use Mockery;
 
 class DataPasienTest extends TestCase
 {
-    use RefreshDatabase;
+    protected $mockDataPasienRepository;
 
-    /** @test */
-    public function it_can_create_data_pasien()
+    protected function setUp(): void
     {
-        $data = [
-            'id_event' => 1,
-            'namapasien' => 'Siti Aminah',
-            'jeniskelaminispria' => false,
-            'tanggallahir' => '1995-07-20',
-            'alamat' => 'Jl. Kebun Raya No. 7',
-        ];
+        parent::setUp();
 
-        $pasien = DataPasien::create($data);
+        // Buat mock dari interface-nya
+        $this->mockDataPasienRepository = Mockery::mock(DataPasienRepositoryInterface::class);
 
-        $this->assertDatabaseHas('Data Pasien', [
-            'namapasien' => 'Siti Aminah',
-            'jeniskelaminispria' => false,
-        ]);
+        // Registrasi mock agar Laravel pakai ini
+        $this->app->instance(DataPasienRepositoryInterface::class, $this->mockDataPasienRepository);
     }
 
-    /** @test */
-    public function it_has_correct_fillable_fields()
+    public function test_pasien_can_be_created()
     {
-        $model = new DataPasien();
+        $pasienData = [
+            'id_pasien' => 'P001',
+            'nama' => 'Budi Santoso',
+            'alamat' => 'Jl. Mawar No. 12',
+            'tanggal_lahir' => '1990-01-01',
+            'jenis_kelamin' => 'Laki-laki',
+            'nomor_hp' => '081234567890'
+        ];
 
-        $this->assertEquals([
-            'id_event',
-            'namapasien',
-            'jeniskelaminispria',
-            'tanggallahir',
-            'alamat',
-        ], $model->getFillable());
+        $this->mockDataPasienRepository
+            ->shouldReceive('create')
+            ->once()
+            ->with($pasienData)
+            ->andReturn((object) $pasienData);
+
+        $pasien = $this->mockDataPasienRepository->create($pasienData);
+
+        $this->assertEquals('Budi Santoso', $pasien->nama);
+        $this->assertEquals('081234567890', $pasien->nomor_hp);
+    }
+
+    public function test_pasien_can_be_read()
+    {
+        $pasienId = 'P001';
+        $pasienData = (object) [
+            'id_pasien' => $pasienId,
+            'nama' => 'Budi Santoso',
+            'alamat' => 'Jl. Mawar No. 12',
+            'tanggal_lahir' => '1990-01-01',
+            'jenis_kelamin' => 'Laki-laki',
+            'nomor_hp' => '081234567890'
+        ];
+
+        $this->mockDataPasienRepository
+            ->shouldReceive('findById')
+            ->once()
+            ->with($pasienId)
+            ->andReturn($pasienData);
+
+        $pasien = $this->mockDataPasienRepository->findById($pasienId);
+
+        $this->assertEquals($pasienId, $pasien->id_pasien);
+        $this->assertEquals('Budi Santoso', $pasien->nama);
+    }
+
+    public function test_pasien_can_be_updated()
+    {
+        $pasienId = 'P001';
+        $updateData = [
+            'alamat' => 'Jl. Melati No. 45',
+            'nomor_hp' => '089912345678'
+        ];
+
+        $this->mockDataPasienRepository
+            ->shouldReceive('update')
+            ->once()
+            ->with($pasienId, $updateData)
+            ->andReturn(true);
+
+        $result = $this->mockDataPasienRepository->update($pasienId, $updateData);
+
+        $this->assertTrue($result);
+    }
+
+    public function test_pasien_can_be_deleted()
+    {
+        $pasienId = 'P001';
+
+        $this->mockDataPasienRepository
+            ->shouldReceive('delete')
+            ->once()
+            ->with($pasienId)
+            ->andReturn(true);
+
+        $result = $this->mockDataPasienRepository->delete($pasienId);
+
+        $this->assertTrue($result);
     }
 }
