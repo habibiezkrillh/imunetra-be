@@ -22,22 +22,23 @@ class UserRelawanTest extends TestCase
     public function test_user_relawan_can_be_created()
     {
         $data = [
-            'namarelawan' => 'Andi',
-            'kotadomisili' => 'Makassar',
-            'nomortelepon' => '08123456789',
-            'email' => 'andi@example.com',
-            'katasandi' => 'password123',
-            'alamatlengkap' => 'Jalan AP Pettarani',
-            'KTP' => '1234567890123456',
+            'namarelawan'    => 'Andi',
+            'kotadomisili'   => 'Makassar',
+            'nomortelepon'   => '08123456789',
+            'email'          => 'andi@example.com',
+            'katasandi'      => 'password123',
+            'alamatlengkap'  => 'Jl. AP Pettarani',
+            'KTP'            => '1234567890',
         ];
 
-        $userRelawan = new UserRelawan($data);
+        $expected = new UserRelawan($data);
+        $expected->id_relawan = 1;
 
         $this->mockUserRelawanRepository
             ->shouldReceive('create')
             ->once()
             ->with($data)
-            ->andReturn($userRelawan);
+            ->andReturn($expected);
 
         $relawan = $this->mockUserRelawanRepository->create($data);
 
@@ -48,24 +49,22 @@ class UserRelawanTest extends TestCase
     public function test_user_relawan_can_be_read()
     {
         $id = 1;
-        $data = [
-            'id_relawan' => $id,
-            'namarelawan' => 'Andi',
-            'email' => 'andi@example.com',
-            'nomortelepon' => '08123456789',
-            'alamatlengkap' => 'Makassar',
-            'kotadomisili' => 'Makassar',
-            'katasandi' => 'rahasia',
-            'KTP' => '1234567890',
-        ];
-
-        $userRelawan = new UserRelawan($data);
+        $relawanData = new UserRelawan([
+            'namarelawan'    => 'Andi',
+            'kotadomisili'   => 'Makassar',
+            'nomortelepon'   => '08123456789',
+            'email'          => 'andi@example.com',
+            'katasandi'      => 'password123',
+            'alamatlengkap'  => 'Jl. AP Pettarani',
+            'KTP'            => '1234567890',
+        ]);
+        $relawanData->id_relawan = $id;
 
         $this->mockUserRelawanRepository
             ->shouldReceive('findById')
             ->once()
             ->with($id)
-            ->andReturn($userRelawan);
+            ->andReturn($relawanData);
 
         $relawan = $this->mockUserRelawanRepository->findById($id);
 
@@ -105,5 +104,11 @@ class UserRelawanTest extends TestCase
         $result = $this->mockUserRelawanRepository->delete($id);
 
         $this->assertTrue($result);
+    }
+
+    protected function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
     }
 }
