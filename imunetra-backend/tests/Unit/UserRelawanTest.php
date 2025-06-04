@@ -22,58 +22,63 @@ class UserRelawanTest extends TestCase
     public function test_user_relawan_can_be_created()
     {
         $data = [
-            'id_relawan' => 'USR001',
-            'nama' => 'Andi',
+            'namarelawan' => 'Andi',
+            'kotadomisili' => 'Makassar',
+            'nomortelepon' => '08123456789',
             'email' => 'andi@example.com',
-            'no_hp' => '08123456789',
-            'alamat' => 'Makassar',
-            'tanggal_lahir' => '2000-01-01',
-            'jenis_kelamin' => 'Laki-laki',
+            'katasandi' => 'password123',
+            'alamatlengkap' => 'Jalan AP Pettarani',
+            'KTP' => '1234567890123456',
         ];
+
+        $userRelawan = new UserRelawan($data);
 
         $this->mockUserRelawanRepository
             ->shouldReceive('create')
             ->once()
             ->with($data)
-            ->andReturn((object) $data);
+            ->andReturn($userRelawan);
 
         $relawan = $this->mockUserRelawanRepository->create($data);
 
-        $this->assertEquals('Andi', $relawan->nama);
+        $this->assertEquals('Andi', $relawan->namarelawan);
         $this->assertEquals('andi@example.com', $relawan->email);
     }
 
     public function test_user_relawan_can_be_read()
     {
-        $id = 'USR001';
-        $relawanData = (object) [
+        $id = 1;
+        $data = [
             'id_relawan' => $id,
-            'nama' => 'Andi',
+            'namarelawan' => 'Andi',
             'email' => 'andi@example.com',
-            'no_hp' => '08123456789',
-            'alamat' => 'Makassar',
-            'tanggal_lahir' => '2000-01-01',
-            'jenis_kelamin' => 'Laki-laki',
+            'nomortelepon' => '08123456789',
+            'alamatlengkap' => 'Makassar',
+            'kotadomisili' => 'Makassar',
+            'katasandi' => 'rahasia',
+            'KTP' => '1234567890',
         ];
+
+        $userRelawan = new UserRelawan($data);
 
         $this->mockUserRelawanRepository
             ->shouldReceive('findById')
             ->once()
             ->with($id)
-            ->andReturn($relawanData);
+            ->andReturn($userRelawan);
 
         $relawan = $this->mockUserRelawanRepository->findById($id);
 
         $this->assertEquals($id, $relawan->id_relawan);
-        $this->assertEquals('Andi', $relawan->nama);
+        $this->assertEquals('Andi', $relawan->namarelawan);
     }
 
     public function test_user_relawan_can_be_updated()
     {
-        $id = 'USR001';
+        $id = 1;
         $updateData = [
-            'alamat' => 'Gowa',
-            'no_hp' => '0899999999',
+            'alamatlengkap' => 'Gowa',
+            'nomortelepon' => '0899999999',
         ];
 
         $this->mockUserRelawanRepository
@@ -89,7 +94,7 @@ class UserRelawanTest extends TestCase
 
     public function test_user_relawan_can_be_deleted()
     {
-        $id = 'USR001';
+        $id = 1;
 
         $this->mockUserRelawanRepository
             ->shouldReceive('delete')
