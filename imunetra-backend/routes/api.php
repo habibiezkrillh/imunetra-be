@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserRelawanController;
 use App\Http\Controllers\UserTenagaMedisController;
+use App\Http\Controllers\DataPasienController;
+use App\Http\Controllers\HasilPasienController;
 
 // =======================
 // === AUTH SECTION =====
@@ -27,9 +29,27 @@ Route::put('/relawan/{id}', [UserRelawanController::class, 'update']);     // up
 Route::delete('/relawan/{id}', [UserRelawanController::class, 'destroy']); // delete
 
 // =======================================
-// === TENAGA MEDIS (CRUD sederhana) =====
+// === TENAGA MEDIS =====
 // =======================================
 Route::get('/tenaga-medis', [UserTenagaMedisController::class, 'index']);           // list all
 Route::get('/tenaga-medis/{id}', [UserTenagaMedisController::class, 'show']);       // show one
 Route::put('/tenaga-medis/{id}', [UserTenagaMedisController::class, 'update']);     // update
 Route::delete('/tenaga-medis/{id}', [UserTenagaMedisController::class, 'destroy']); // delete
+
+// =======================================
+// === DATA PASIEN ======================
+// =======================================
+Route::get('/pasien', [DataPasienController::class, 'index']);
+Route::get('/pasien/{id}', [DataPasienController::class, 'show']);
+Route::post('/pasien', [DataPasienController::class, 'store']);
+Route::put('/pasien/{id}', [DataPasienController::class, 'update']);
+Route::delete('/pasien/{id}', [DataPasienController::class, 'destroy']);
+
+// =======================================
+// === HASIL PASIEN ======================
+// =======================================
+Route::get('/hasil-pasien', [HasilPasienController::class, 'index']);
+Route::get('/hasil-pasien/{id}', [HasilPasienController::class, 'show']);
+Route::post('/hasil-pasien', [HasilPasienController::class, 'store']);
+Route::put('/hasil-pasien/{id}', [HasilPasienController::class, 'update']);
+Route::delete('/hasil-pasien/{id}', [HasilPasienController::class, 'destroy']);
