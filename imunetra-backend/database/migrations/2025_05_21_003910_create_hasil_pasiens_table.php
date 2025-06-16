@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHasilPasienTable extends Migration
+return new class extends Migration
+
 {
     public function up(): void
     {
@@ -21,4 +22,4 @@ class CreateHasilPasienTable extends Migration
     {
         Schema::dropIfExists('hasil_pasien');
     }
-}
+};
