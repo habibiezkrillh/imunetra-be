@@ -17,6 +17,5 @@ class UserRelawan extends Model
         'email',         
         'katasandi',
         'alamatlengkap',
-        'KTP',
     ];
 }

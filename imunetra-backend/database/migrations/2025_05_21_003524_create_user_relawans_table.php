@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->string('email');
             $table->string('katasandi');
             $table->string('alamatlengkap');
-            $table->string('KTP');
         });
     }
 

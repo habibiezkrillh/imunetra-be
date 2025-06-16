@@ -22,7 +22,6 @@ class AuthController extends Controller
             'email'          => 'required|email|unique:user_relawan,email',
             'katasandi'      => 'required|string|min:6',
             'alamatlengkap'  => 'required|string',
-            'KTP'            => 'required|string|max:50'
         ]);
 
         if ($validator->fails()) {
