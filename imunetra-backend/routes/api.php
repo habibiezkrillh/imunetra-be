@@ -8,6 +8,7 @@ use App\Http\Controllers\UserTenagaMedisController;
 use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\HasilPasienController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RiwayatRelawanController;
 
 // =======================
 // === AUTH SECTION =====
@@ -64,3 +65,11 @@ Route::get('/events/{id}', [EventController::class, 'show']);
 Route::put('/events/{id}', [EventController::class, 'update']);
 Route::delete('/events/{id}', [EventController::class, 'destroy']);
 Route::get('/events/filter', [EventController::class, 'filter']);
+
+// =======================================
+// === RiwayatRelawan ====================
+// =======================================
+Route::get('/riwayat-relawan', [RiwayatRelawanController::class, 'index']);
+Route::get('/riwayat-relawan/{id_relawan}', [RiwayatRelawanController::class, 'riwayatByRelawan']);
+Route::post('/riwayat-relawan', [RiwayatRelawanController::class, 'store']);
+Route::get('/riwayat-relawan/{id_relawan}/{id_event}', [RiwayatRelawanController::class, 'show']);
