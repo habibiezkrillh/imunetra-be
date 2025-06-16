@@ -10,9 +10,6 @@ return new class extends Migration {
             $table->id('id_chat');
             $table->unsignedBigInteger('id_relawan');
             $table->unsignedBigInteger('id_tenagamedis');
-
-            $table->foreign('id_relawan')->references('id_relawan')->on('user_relawan')->onDelete('cascade');
-            $table->foreign('id_tenagamedis')->references('id_tenagamedis')->on('user_tenaga_medis')->onDelete('cascade');
         });
     }
 

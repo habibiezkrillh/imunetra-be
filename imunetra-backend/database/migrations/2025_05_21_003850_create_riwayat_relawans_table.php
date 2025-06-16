@@ -13,9 +13,6 @@ return new class extends Migration {
             $table->string('Status');
 
             $table->primary(['id_relawan', 'id_event']);
-
-            $table->foreign('id_relawan')->references('id_relawan')->on('user_relawan')->onDelete('cascade');
-            $table->foreign('id_event')->references('id_event')->on('events')->onDelete('cascade');
         });
     }
 

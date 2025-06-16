@@ -12,16 +12,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_event');
             $table->timestamp('waktubergabung')->nullable();
             $table->string('status');
-
-            $table->foreign('id_tenagamedis')
-                ->references('id_tenagamedis')
-                ->on('user_tenaga_medis')
-                ->onDelete('cascade');
-
-            $table->foreign('id_event')
-                ->references('id_event')
-                ->on('events')
-                ->onDelete('cascade');
         });
     }
 

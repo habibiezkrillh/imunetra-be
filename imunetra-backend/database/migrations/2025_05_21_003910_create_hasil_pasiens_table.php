@@ -14,8 +14,6 @@ class CreateHasilPasienTable extends Migration
             $table->float('suhupasiencelcius');
             $table->integer('denyutjantung');
             $table->boolean('statusispneumonia');
-
-            $table->foreign('id_pasien')->references('id_pasien')->on('pasien')->onDelete('cascade');
         });
     }
 
