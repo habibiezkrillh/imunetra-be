@@ -50,8 +50,7 @@ class AuthController extends Controller
             'katasandi'             => 'required|string|min:6',
             'tanggallahir'          => 'required|date',
             'alamatlengkap'         => 'required|string',
-            'KTP'                   => 'required|string|max:50',
-            'Puskesmas/RumahSakit'  => 'required|string|max:255'
+            'puskesmas_rumahsakit'  => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {

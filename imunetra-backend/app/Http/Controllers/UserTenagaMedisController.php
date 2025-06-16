@@ -43,7 +43,6 @@ class UserTenagaMedisController extends Controller
             'katasandi' => 'sometimes|required|string|min:6',
             'tanggallahir' => 'sometimes|required|date',
             'alamatlengkap' => 'sometimes|required|string',
-            'KTP' => 'sometimes|required|string',
             'Puskesmas/RumahSakit' => 'sometimes|required|string',
         ]);
 
