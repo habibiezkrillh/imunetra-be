@@ -7,6 +7,7 @@ use App\Http\Controllers\UserRelawanController;
 use App\Http\Controllers\UserTenagaMedisController;
 use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\HasilPasienController;
+use App\Http\Controllers\EventController;
 
 // =======================
 // === AUTH SECTION =====
@@ -29,7 +30,7 @@ Route::put('/relawan/{id}', [UserRelawanController::class, 'update']);     // up
 Route::delete('/relawan/{id}', [UserRelawanController::class, 'destroy']); // delete
 
 // =======================================
-// === TENAGA MEDIS =====
+// === TENAGA MEDIS ======================
 // =======================================
 Route::get('/tenaga-medis', [UserTenagaMedisController::class, 'index']);           // list all
 Route::get('/tenaga-medis/{id}', [UserTenagaMedisController::class, 'show']);       // show one
@@ -53,3 +54,13 @@ Route::get('/hasil-pasien/{id}', [HasilPasienController::class, 'show']);
 Route::post('/hasil-pasien', [HasilPasienController::class, 'store']);
 Route::put('/hasil-pasien/{id}', [HasilPasienController::class, 'update']);
 Route::delete('/hasil-pasien/{id}', [HasilPasienController::class, 'destroy']);
+
+// =======================================
+// === EVENT =============================
+// =======================================
+Route::get('/events', [EventController::class, 'index']);
+Route::post('/events', [EventController::class, 'store']);
+Route::get('/events/{id}', [EventController::class, 'show']);
+Route::put('/events/{id}', [EventController::class, 'update']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
+Route::get('/events/filter', [EventController::class, 'filter']);
