@@ -13,17 +13,17 @@ class CreateUserTenagaMedisTable extends Migration
             $table->string('namatenagamedis');
             $table->string('kotadomisili');
             $table->string('nomortelepon');
-            $table->string('email')->unique(); // ✅ Tambahkan email
+            $table->string('email')->unique();
             $table->string('katasandi');
             $table->date('tanggallahir');
             $table->text('alamatlengkap');
-            $table->string('puskesmas_rumahsakit'); // ✅ Ganti nama field dari Puskesmas/RumahSakit
+            $table->string('puskesmas_rumahsakit'); 
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('user_tenaga_medis'); // ✅ Sesuaikan dengan up()
+        Schema::dropIfExists('user_tenaga_medis'); 
     }
 }
