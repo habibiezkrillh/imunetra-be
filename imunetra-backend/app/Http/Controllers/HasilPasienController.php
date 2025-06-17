@@ -15,7 +15,7 @@ class HasilPasienController extends Controller
         $hasil = HasilPasien::with('pasien')->get();
         return response()->json($hasil);
     }
-
+ 
     // Menyimpan hasil baru
     public function store(Request $request)
     {
