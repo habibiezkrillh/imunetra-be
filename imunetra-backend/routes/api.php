@@ -10,6 +10,7 @@ use App\Http\Controllers\HasilPasienController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RiwayatRelawanController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\RiwayatTenagaMedisController;
 
 // =======================
 // === AUTH SECTION =====
@@ -82,3 +83,12 @@ Route::get('/chat', [ChatController::class, 'index']);
 Route::get('/chat/{id}', [ChatController::class, 'show']);
 Route::post('/chat', [ChatController::class, 'store']);
 Route::delete('/chat/{id}', [ChatController::class, 'destroy']);
+
+// ============================================
+// === Riwayat Tenaga Medis ===================
+// ============================================
+Route::get('/riwayat-tenaga-medis', [RiwayatTenagaMedisController::class, 'index']);
+Route::get('/riwayat-tenaga-medis/{id_tenagamedis}', [RiwayatTenagaMedisController::class, 'riwayatByTenagaMedis']);
+Route::post('/riwayat-tenaga-medis', [RiwayatTenagaMedisController::class, 'store']);
+Route::get('/riwayat-tenaga-medis/{id_tenagamedis}/{id_event}', [RiwayatTenagaMedisController::class, 'show']);
+Route::delete('/riwayat-tenaga-medis/{id}', [RiwayatTenagaMedisController::class, 'destroy']);
