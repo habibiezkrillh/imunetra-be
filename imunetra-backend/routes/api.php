@@ -9,6 +9,7 @@ use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\HasilPasienController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RiwayatRelawanController;
+use App\Http\Controllers\ChatController;
 
 // =======================
 // === AUTH SECTION =====
@@ -73,3 +74,11 @@ Route::get('/riwayat-relawan', [RiwayatRelawanController::class, 'index']);
 Route::get('/riwayat-relawan/{id_relawan}', [RiwayatRelawanController::class, 'riwayatByRelawan']);
 Route::post('/riwayat-relawan', [RiwayatRelawanController::class, 'store']);
 Route::get('/riwayat-relawan/{id_relawan}/{id_event}', [RiwayatRelawanController::class, 'show']);
+
+// =======================================
+// === CHAT =============================
+// =======================================
+Route::get('/chat', [ChatController::class, 'index']);
+Route::get('/chat/{id}', [ChatController::class, 'show']);
+Route::post('/chat', [ChatController::class, 'store']);
+Route::delete('/chat/{id}', [ChatController::class, 'destroy']);
